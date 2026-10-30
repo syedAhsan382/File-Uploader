@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+
+    <!-- Font: DM Sans from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <div class="header-icon">
+                <!-- Image icon (SVG) -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                    <circle cx="9" cy="9" r="1.5"></circle>
+                    <path d="M21 15l-5-5L5 21"></path>
+                </svg>
+            </div>
+            <div>
+                <h1>Image Uploader</h1>
+                <p class="subtitle">Add JPG, PNG or GIF images by dragging them in or browsing your files.</p>
+            </div>
+        </header>
+
+        <div class="drop-zone" id="dropZone">
+            <div class="drop-zone-icon">
+                <!-- Upload icon (SVG) -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 16V4"></path>
+                    <path d="M7 9l5-5 5 5"></path>
+                    <path d="M20 16v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"></path>
+                </svg>
+            </div>
+            <p><strong>Drop images here</strong> or <span class="browse">browse</span></p>
+            <small>JPG, PNG or GIF</small>
+            <input type="file" id="fileInput" class="file-input" accept="image/jpeg,image/png,image/gif" multiple />
+        </div>
+
+        <div id="errorBox"></div>
+        <div class="preview-grid" id="previewGrid"></div>
+        <button class="clear-all" id="clearAll" style="display:none;">Clear all</button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
