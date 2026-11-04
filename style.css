@@ -1,7 +1,6 @@
-/* ---------- Colors in one place ---------- */
 :root {
-  --accent: #3b4cca;          /* the one main color */
-  --accent-light: #eef0fd;    /* very light version of it */
+  --accent: #3b4cca;          
+  --accent-light: #eef0fd;   
   --text: #1c1f33;
   --text-soft: #6b7089;
   --border: #dfe2ee;
@@ -17,8 +16,6 @@ body {
   color: var(--text);
   min-height: 100vh;
   padding: 60px 20px;
-
-  /* Light page with a faint dot pattern */
   background-color: var(--page-bg);
   background-image: radial-gradient(#d3d7e8 1px, transparent 1px);
   background-size: 22px 22px;
@@ -38,7 +35,6 @@ body {
     0 24px 48px -12px rgba(28, 31, 51, 0.14);
 }
 
-/* ---------- Header ---------- */
 .header {
   display: flex;
   align-items: center;
@@ -70,8 +66,7 @@ h1 {
   line-height: 1.5;
   margin-top: 2px;
 }
-
-/* ---------- Drop Zone ---------- */
+  /* File drop zone  */
 .drop-zone {
   border: 2px dashed var(--border);
   border-radius: 14px;
@@ -97,6 +92,7 @@ h1 {
   50%      { box-shadow: 0 0 0 12px rgba(59, 76, 202, 0); }
 }
 
+  /* File Drop Zone icon */
 .drop-zone-icon {
   width: 56px;
   height: 56px;
@@ -110,7 +106,7 @@ h1 {
   transition: background 0.2s, color 0.2s;
 }
 
-/* icon turns solid when you hover or drag over */
+/* icon turns solid when hover or drag over */
 .drop-zone:hover .drop-zone-icon,
 .drop-zone.drag-over .drop-zone-icon {
   background: var(--accent);
@@ -163,7 +159,7 @@ h1 {
   margin-top: 24px;
 }
 
-/* the grid is empty until files are added, so don't leave a gap */
+/* the grid is empty until files are added */
 .preview-grid:empty { margin-top: 0; }
 
 .file-card {
@@ -209,8 +205,8 @@ h1 {
 }
  
   
-
-.remove-btn {        /* File Remove button */
+  /* File Remove button */
+.remove-btn {      
   position: absolute;
   top: 14px;
   right: 14px;
@@ -276,13 +272,13 @@ h1 {
   border-color: var(--danger);
 }
 
-/* ---------- Keyboard focus (accessibility) ---------- */
+/* ---------- Keyboard focus ---------- */
 button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* ---------- Small screens ---------- */
+/* ---------- Media Queries for smaller screens ---------- */
 @media (max-width: 480px) {
   body { padding: 24px 12px; }
   .container { padding: 20px; }
