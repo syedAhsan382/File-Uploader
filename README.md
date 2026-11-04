@@ -1,76 +1,89 @@
 # Image Uploader
- 
-A drag-and-drop image uploader built with plain HTML, CSS and JavaScript. Drop images in (or browse your files), see a preview with a progress bar, and your images are still there when you reload the page.
- 
-**Live demo:** [add your Vercel or Netlify link here]
- 
-![Image Uploader screenshot](screenshot.png)
- 
+
+A simple image uploader built with plain HTML, CSS, and JavaScript. Drag and drop images (or browse for them), see a preview card for each one with a progress bar, and keep them saved in the browser even after refreshing the page.
+
+> **Note:** This is a front-end practice project. Nothing is sent to a server. The progress bar is simulated, and images are stored in the browser's `localStorage`.
+
+<!-- Add a screenshot or GIF of the app here: -->
+<!-- ![Image Uploader screenshot](screenshot.png) -->
+
 ## Features
- 
-- Drag and drop images onto the drop zone, or click it to browse your files
+
+- Drag and drop images onto the drop zone, or click to browse your files
 - Upload multiple images at once
-- Only JPG, PNG and GIF are accepted. Each file is checked by its MIME type and by its file extension
-- Files larger than 2 MB are rejected with a clear error message
-- Error messages appear for invalid files and disappear automatically after 5 seconds
-- Image preview cards showing the thumbnail, file name and file size
-- A progress bar and status text for each image (the upload is simulated, see below)
-- Remove a single image with the X button, or remove everything with "Clear all" (asks for confirmation first)
-- Images are saved in the browser, so they are still there after a page reload
-- The drop zone highlights while you drag a file over it
-- Responsive layout that works on phones and desktops
-## Built with
- 
-- HTML5
-- CSS3 (CSS variables, Grid, Flexbox, transitions, keyframe animations)
-- Vanilla JavaScript, with no libraries or frameworks
-## How it works
- 
-1. **Getting the files.** The drop zone listens for `dragenter`, `dragover`, `dragleave` and `drop` events. A click on the zone triggers a hidden `<input type="file">`. Both ways send the files to the same function, `handleFiles`.
-2. **Validating.** Each file is checked for type, extension and size before anything else happens.
-3. **Reading the image.** `FileReader.readAsDataURL()` turns the file into a data URL, which is used as the `src` of the preview image.
-4. **Progress bar.** The upload is simulated, since there is no server. A function using `setTimeout` adds a random amount to the progress on every tick until it reaches 100%, then marks the card as done.
-5. **Saving.** When the progress reaches 100%, the image (name, size and data URL) is saved in `localStorage` as JSON. On page load, the saved images are read back and their cards are rebuilt.
-## Run it locally
- 
-No install or build step is needed.
- 
-1. Download or clone the project:
-```
+- Accepts **JPG, PNG, and GIF** only
+- Validates each file (MIME type, file extension, and size up to 2MB)
+- Shows an error message for invalid files, which disappears after 5 seconds
+- Preview card for each image with its name and size
+- Simulated progress bar (built with `setTimeout`)
+- Images are saved in `localStorage`, so they are still there after a refresh
+- Remove a single image, or clear all images at once
+- Responsive layout that works on smaller screens
+
+## Built With
+
+- **HTML5**: page structure and the hidden file input
+- **CSS3**: custom properties (variables), Flexbox, CSS Grid, transitions, and keyframe animations
+- **JavaScript (ES6)**: DOM manipulation, `FileReader`, `localStorage`, and `setTimeout`
+
+No frameworks or libraries are used.
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
    git clone https://github.com/your-username/your-repo-name.git
-```
-2. Open `index.html` in your browser.
-## Project structure
- 
+   ```
+2. Open the project folder.
+3. Open `index.html` in your browser. No install or build step is needed.
+
+## Project Structure
+
 ```
 image-uploader/
-├── index.html    # page structure
-├── style.css     # all the styling
-├── script.js     # drag and drop, validation, previews, progress bar, storage
-└── README.md
+├── index.html    # Page structure
+├── style.css     # All styling
+└── script.js     # App logic
 ```
- 
-## Limitations
- 
-- The upload is a simulation. Images are not sent to a server, they are only stored in the browser
-- `localStorage` has a limit of about 5 MB, so only a few images fit. That is why each file is limited to 2 MB, and the page shows an error if the storage is full
-- Images are saved per browser, so they will not appear on another device
-## What I learned
- 
-- Handling drag and drop events and why `preventDefault()` is needed so the browser does not open the dropped file
-- Reading files with `FileReader` and showing them using data URLs
-- How `setTimeout` can be used to build a progress bar step by step
-- Saving and loading data with `localStorage` and `JSON.stringify` / `JSON.parse`
-- Validating user input and showing helpful error messages
-- Rebuilding the page from saved data when it loads
-## Possible improvements
- 
-- Upload the files to a real server or a cloud service instead of simulating it
-- Add an image preview modal when a thumbnail is clicked
-- Show a total count of uploaded images
-- Use IndexedDB instead of `localStorage` to store larger files
+
+## How It Works
+
+1. The user drops files on the drop zone or selects them with the file picker.
+2. Each file goes through `validateAndProcess()`, which checks the type, extension, and size.
+3. If the file is valid, `processFile()` creates a preview card and reads the file with `FileReader.readAsDataURL()`.
+4. `simulateUpload()` fills the progress bar using a function that keeps scheduling itself with `setTimeout`.
+5. When the bar reaches 100%, the image is saved to `localStorage` as a data URL.
+6. When the page loads again, `loadFromStorage()` rebuilds the cards from the saved data.
+
+## What I Learned
+
+- Handling drag and drop events (`dragenter`, `dragover`, `dragleave`, `drop`) and why `preventDefault()` is needed
+- Reading files in the browser with `FileReader`
+- How `setTimeout` schedules a function to run later without pausing the rest of the code
+- Saving and loading data with `localStorage`, including `JSON.stringify` and `JSON.parse`
+- Changing styles by adding and removing CSS classes from JavaScript
+- Building a responsive grid with `repeat(auto-fill, minmax(...))`
+
+## Known Limitations
+
+- `localStorage` holds only about 5MB, so a few images can fill it up. Data URLs are also about 33% larger than the original file.
+- If you remove an image while it is still "uploading", it can reappear after a refresh, because the progress loop keeps running and saves it when it finishes.
+- File names are inserted into the card with `innerHTML`, so a file name containing HTML characters could break the card. Using `textContent` would be safer.
+
+## Possible Improvements
+
+- Fix the remove-while-uploading bug by stopping the progress loop when the card is removed
+- Use `textContent` instead of `innerHTML` for file names
+- Connect to a real backend so uploads are actually stored
+- Use IndexedDB instead of `localStorage` for larger storage
+- Add image compression before saving
+
 ## Author
- 
-Syed Muhammad Ahsan, Front-end developer
-[GitHub](https://github.com/your-username) | [LinkedIn](https://www.linkedin.com/in/your-profile)
- 
+
+**Ahsan**
+
+- GitHub: [syedAhsan382](https://github.com/syedAhsan382)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
