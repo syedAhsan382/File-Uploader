@@ -5,7 +5,7 @@ A simple image uploader built with plain HTML, CSS, and JavaScript. Drag and dro
 > **Note:** This is a front-end practice project. Nothing is sent to a server. The progress bar is simulated, and images are stored in the browser's `localStorage`.
 
 <!-- Add a screenshot or GIF of the app here: -->
-<!-- ![Image Uploader screenshot](screenshot.png) -->
+![Image Uploader processing image file](https://github.com/syedAhsan382/Image-Uploader/blob/e3a97cfde39a6d870641266c45e8f5dee48c3c27/Image-uploader.png) 
 
 ## Features
 
